@@ -4,9 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<meta name="google-adsense-account" content="ca-pub-2839804606235311">
 <title>Blobe Scroll</title>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2839804606235311" crossorigin="anonymous"></script>
 <style>
 :root{--bg:#000;--line:#242424;--muted:#aaa;--pink:#fe2c55;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}
@@ -22,7 +20,7 @@ button,select{font:inherit}button{color:inherit}svg{display:block}
 .topbar b{font-size:14px;font-weight:850}
 .api-dot{position:absolute;right:14px;top:calc(17px + var(--safe-top));z-index:21;width:9px;height:9px;border-radius:50%;background:#777;box-shadow:0 0 0 3px #0008}.api-dot.ok{background:#2ed573}.api-dot.bad{background:#ff4757}
 .feed{height:100%;overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none;overscroll-behavior-y:contain}.feed::-webkit-scrollbar{display:none}
-.reel,.ad-reel,.loader-reel{height:100vh;scroll-snap-align:start;scroll-snap-stop:always}
+.reel,.loader-reel{height:100vh;scroll-snap-align:start;scroll-snap-stop:always}
 .reel{position:relative;background:#070707;overflow:hidden}
 .video-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#050505}
 .cover-blur{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(35px) brightness(.25);transform:scale(1.14);opacity:.9}
@@ -45,12 +43,6 @@ video{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;back
 .progress{position:absolute;z-index:9;bottom:0;left:0;right:0;height:2px;background:#ffffff24}.progress i{display:block;height:100%;width:0;background:#fff}
 .loader-reel{display:grid;place-items:center;text-align:center;padding:30px;background:#050505}.spinner{width:38px;height:38px;border:3px solid #333;border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;margin:auto auto 13px}
 .errorbox{max-width:360px;color:#aaa;line-height:1.5}.errorbox h2{color:#fff;margin:0 0 8px}.errorbox button{border:0;background:#fff;color:#000;border-radius:9px;padding:10px 15px;font-weight:850;cursor:pointer;margin-top:10px}
-.ad-reel{position:relative;background:#080808;display:grid;place-items:center;padding:76px 18px 36px}
-.ad-shell{width:min(100%,430px);min-height:340px;border:1px solid #2b2b2b;border-radius:18px;background:#0d0d0d;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 18px 80px #0008}
-.ad-label{padding:11px 13px;border-bottom:1px solid #242424;color:#9a9a9a;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.ad-body{flex:1;min-height:300px;display:grid;place-items:center;padding:16px}.ad-body .adsbygoogle{width:100%;min-height:280px}
-.ad-placeholder{text-align:center;color:#8e8e8e;font-size:12px;line-height:1.5;max-width:280px}.ad-placeholder b{display:block;color:#fff;font-size:16px;margin-bottom:6px}
-.ad-foot{padding:10px 13px;border-top:1px solid #242424;color:#666;font-size:10px;text-align:center}
 .rightbar{height:100vh;border-left:1px solid var(--line);padding:22px 19px;overflow:auto}
 .card{border:1px solid var(--line);border-radius:14px;background:#0a0a0a;padding:14px;margin-bottom:14px}.card h3{font-size:14px;margin:0 0 10px}.card p{font-size:12px;color:#aaa;line-height:1.45;margin:0}
 .row{display:flex;gap:8px;align-items:center}.row+.row{margin-top:9px}
@@ -60,9 +52,36 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
 .backdrop{position:fixed;z-index:90;inset:0;background:#0009;opacity:0;pointer-events:none;transition:.2s}.backdrop.open{opacity:1;pointer-events:auto}
 .drawer{position:fixed;z-index:91;right:0;top:0;bottom:0;width:min(430px,100vw);background:#0c0c0c;border-left:1px solid #2a2a2a;transform:translateX(100%);transition:.24s;display:flex;flex-direction:column}.drawer.open{transform:none}
 .drawer-head{height:58px;border-bottom:1px solid #262626;display:flex;align-items:center;justify-content:space-between;padding:0 15px;font-weight:850}.close{border:0;background:none;cursor:pointer;padding:8px}
+
+.profile-drawer{position:fixed;z-index:92;right:0;top:0;bottom:0;width:min(470px,100vw);background:#0c0c0c;border-left:1px solid #2a2a2a;transform:translateX(100%);transition:.24s;display:flex;flex-direction:column}
+.profile-drawer.open{transform:none}
+.profile-content{flex:1;overflow:auto}
+.profile-loading{padding:42px 20px;text-align:center;color:#888}
+.profile-hero{padding:24px 18px 18px;border-bottom:1px solid #242424}
+.profile-identity{display:flex;align-items:center;gap:14px}
+.profile-big-avatar{width:82px;height:82px;border-radius:50%;object-fit:cover;background:#222;flex:0 0 auto}
+.profile-big-fallback{width:82px;height:82px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#f9b208,var(--pink),#7048e8);font-size:22px;font-weight:900;flex:0 0 auto}
+.profile-names{min-width:0}
+.profile-names h2{margin:0;font-size:21px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.profile-names .handle{margin-top:5px;color:#aaa;font-size:13px}
+.verified{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;background:#20a8ff;font-size:10px;margin-left:4px;vertical-align:2px}
+.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px;text-align:center}
+.profile-stat{border:1px solid #242424;background:#111;border-radius:11px;padding:10px 5px}
+.profile-stat b{display:block;font-size:15px}
+.profile-stat span{display:block;color:#888;font-size:10px;margin-top:2px}
+.profile-bio{font-size:13px;line-height:1.45;color:#ddd;margin-top:15px;white-space:pre-wrap}
+.profile-posts-head{display:flex;align-items:center;justify-content:space-between;padding:14px 15px;border-bottom:1px solid #232323;font-size:13px;font-weight:850}
+.profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#090909}
+.profile-post{position:relative;aspect-ratio:9/12;border:0;padding:0;background:#151515;overflow:hidden;cursor:pointer}
+.profile-post img{width:100%;height:100%;object-fit:cover;display:block}
+.profile-post-shade{position:absolute;inset:auto 0 0;padding:22px 6px 6px;background:linear-gradient(transparent,#000c);font-size:10px;font-weight:800;text-align:left}
+.profile-empty{padding:36px 20px;text-align:center;color:#888;font-size:13px;line-height:1.5}
+.comment-user{appearance:none;border:0;background:none;color:inherit;padding:0;display:flex;gap:10px;text-align:left;cursor:pointer;max-width:100%}
+.comment-user:hover b{text-decoration:underline}
+
 .comments{flex:1;overflow:auto;padding:16px}.comment{display:flex;gap:10px;margin-bottom:17px}.comment img,.cavi{width:34px;height:34px;border-radius:50%;object-fit:cover;background:#242424;flex:0 0 auto}.cavi{display:grid;place-items:center;font-size:10px;font-weight:800}.ctext{font-size:13px;line-height:1.35}.ctext b{display:block;margin-bottom:3px}.ctext small{display:block;color:#777;margin-top:4px}
 @media(max-width:1040px){.app{grid-template-columns:78px minmax(330px,560px) 0}.sidebar{padding:24px 11px}.logo{padding:4px 2px 20px}.logo img{width:68px;max-width:none}.nav{justify-content:center;padding:13px}.nav span{display:none}.rightbar{display:none}}
-@media(max-width:680px){.app{display:block}.sidebar{display:none}.feed-shell,.reel,.loader-reel,.ad-reel{height:100dvh}.meta{bottom:calc(68px + var(--safe-bottom))}.actions{bottom:calc(67px + var(--safe-bottom))}.progress{bottom:calc(54px + var(--safe-bottom))}
+@media(max-width:680px){.app{display:block}.sidebar{display:none}.feed-shell,.reel,.loader-reel{height:100dvh}.meta{bottom:calc(68px + var(--safe-bottom))}.actions{bottom:calc(67px + var(--safe-bottom))}.progress{bottom:calc(54px + var(--safe-bottom))}
 .mobile-nav{display:flex;position:absolute;z-index:30;left:0;right:0;bottom:0;height:calc(55px + var(--safe-bottom));padding-bottom:var(--safe-bottom);background:#000;border-top:1px solid #1f1f1f;justify-content:space-around;align-items:center}.mobile-nav button{border:0;background:none;padding:9px 14px;cursor:pointer}.mobile-nav svg{width:24px;height:24px}.toast{bottom:calc(70px + var(--safe-bottom))}}
 </style>
 </head>
@@ -101,10 +120,6 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
     </div>
     <div class="row"><button class="btn" id="applyRegion">Connect VPN</button><button class="btn dark" id="shuffleBtn">Shuffle</button></div>
   </div>
-  <div class="card">
-    <h3>About</h3>
-    <p>blobe scroll is super tuff scrolling doomscroll platform and better than Instagram and TikTok rizz party.</p>
-  </div>
 </aside>
 </div>
 
@@ -112,6 +127,15 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
 <aside class="drawer" id="commentsDrawer">
   <div class="drawer-head"><span id="commentsTitle">Comments</span><button class="close" id="closeComments"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2"/></svg></button></div>
   <div class="comments" id="commentsList"></div>
+</aside>
+<aside class="profile-drawer" id="profileDrawer">
+  <div class="drawer-head">
+    <span id="profileTitle">Profile</span>
+    <button class="close" id="closeProfile" aria-label="Close profile">
+      <svg viewBox="0 0 24 24" width="24" height="24"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+  </div>
+  <div class="profile-content" id="profileContent"></div>
 </aside>
 <div class="toast" id="toast"></div>
 
@@ -131,6 +155,9 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
   const backdrop=document.getElementById("backdrop");
   const commentsList=document.getElementById("commentsList");
   const commentsTitle=document.getElementById("commentsTitle");
+  const profileDrawer=document.getElementById("profileDrawer");
+  const profileContent=document.getElementById("profileContent");
+  const profileTitle=document.getElementById("profileTitle");
 
   let videos=[];
   let ids=new Set();
@@ -141,10 +168,10 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
   let soundOn=true;
   let observer=null;
   let activeFeedElement=null;
-  let generation=0;
-  const requestedAdElements=new WeakSet();
   let liked=new Set(JSON.parse(localStorage.getItem("blobe-scroll-liked")||"[]"));
   let saved=new Set(JSON.parse(localStorage.getItem("blobe-scroll-saved")||"[]"));
+  let profileReturnToComments=false;
+  let currentProfileUsername="";
 
   const fmt=n=>{n=Number(n||0);if(n>=1e9)return(n/1e9).toFixed(n>=1e10?0:1).replace(".0","")+"B";if(n>=1e6)return(n/1e6).toFixed(n>=1e7?0:1).replace(".0","")+"M";if(n>=1e3)return(n/1e3).toFixed(n>=1e4?0:1).replace(".0","")+"K";return String(n||0)};
   const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -211,7 +238,7 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
     loading=true;
     if(reset){
       pauseAll();
-      videos=[];ids.clear();activeIndex=0;renderedCount=0;batches=0;generation++;
+      videos=[];ids.clear();activeIndex=0;renderedCount=0;batches=0;
       feed.innerHTML=`<div class="loader-reel" id="initialLoader"><div><div class="spinner"></div><b>Loading Blobe Scroll…</b></div></div>`;
     }
     try{
@@ -269,13 +296,6 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
     </section>`;
   }
 
-  function adMarkup(i){
-    return`<section class="ad-reel" data-ad-key="${generation}:${i}">
-      <div class="ad-shell"><div class="ad-label">Advertisement</div><div class="ad-body">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2839804606235311" data-ad-slot="6217361859" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      </div><div class="ad-foot">Swipe to continue</div></div>
-    </section>`;
-  }
 
   function appendNewCards(){
     const frag=document.createDocumentFragment();
@@ -284,10 +304,6 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
       const holder=document.createElement("div");holder.innerHTML=reelMarkup(v,i).trim();
       const reel=holder.firstElementChild;frag.appendChild(reel);
       renderedCount++;
-      if(renderedCount%3===0){
-        const ah=document.createElement("div");ah.innerHTML=adMarkup(renderedCount).trim();
-        frag.appendChild(ah.firstElementChild);
-      }
     }
     feed.appendChild(frag);
     bindNewCards();
@@ -310,7 +326,7 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
       };
       r.querySelector("[data-comment]").onclick=()=>openComments(r.dataset.id);
       r.querySelector("[data-share]").onclick=()=>shareVideo(r.dataset.id);
-      r.querySelector("[data-profile]").onclick=()=>window.open(SOURCE_ORIGIN+"/@"+encodeURIComponent(r.querySelector("[data-profile]").dataset.profile),"_blank","noopener");
+      r.querySelector("[data-profile]").onclick=()=>openProfile(r.querySelector("[data-profile]").dataset.profile,false);
     });
   }
 
@@ -320,7 +336,6 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
       for(const e of entries){
         if(e.isIntersecting&&e.intersectionRatio>.72){
           activeFeedElement=e.target;
-          if(e.target.classList.contains("ad-reel")){pauseAll();requestAdFor(e.target);continue}
           if(e.target.classList.contains("reel")){
             activeIndex=Number(e.target.dataset.index);activate(activeIndex);
             if(activeIndex>=videos.length-4)loadMore(false)
@@ -334,35 +349,9 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
 
   function observeNewCards(){
     if(!observer)setupObserver();
-    feed.querySelectorAll(".reel:not([data-observed]),.ad-reel:not([data-observed])").forEach(el=>{el.dataset.observed="1";observer.observe(el)});
+    feed.querySelectorAll(".reel:not([data-observed])").forEach(el=>{el.dataset.observed="1";observer.observe(el)});
   }
 
-  async function requestAdFor(card){
-    if(!card||requestedAdElements.has(card))return;
-    requestedAdElements.add(card);
-    const ins=card.querySelector(".adsbygoogle");
-    if(!ins)return;
-
-    if(location.protocol!=="http:"&&location.protocol!=="https:"){
-      card.querySelector(".ad-body").innerHTML='<div class="ad-placeholder"><b>Sponsored</b>Ads load on the deployed website.</div>';
-      return;
-    }
-
-    for(let i=0;i<30&&!window.adsbygoogle;i++)await new Promise(r=>setTimeout(r,150));
-    try{
-      (window.adsbygoogle=window.adsbygoogle||[]).push({});
-      const mo=new MutationObserver(()=>{
-        if(ins.dataset.adStatus==="unfilled"){
-          mo.disconnect();
-          card.querySelector(".ad-body").innerHTML='<div class="ad-placeholder"><b>Sponsored</b>No ad available right now.</div>';
-        }
-      });
-      mo.observe(ins,{attributes:true,attributeFilter:["data-ad-status"]});
-    }catch(err){
-      console.warn("Ad unavailable",err);
-      card.querySelector(".ad-body").innerHTML='<div class="ad-placeholder"><b>Sponsored</b>Ad unavailable right now.</div>';
-    }
-  }
 
   function pauseAll(except=null){
     feed.querySelectorAll(".reel").forEach(r=>{if(r!==except){r.querySelector("video")?.pause();r.classList.add("paused")}})
@@ -378,16 +367,157 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
   }
 
   async function openComments(id){
-    const v=videos.find(x=>x.id===id);commentsTitle.textContent=v?`${fmt(v.commentCount)} comments`:"Comments";
+    const v=videos.find(x=>x.id===id);
+    commentsTitle.textContent=v?`${fmt(v.commentCount)} comments`:"Comments";
     commentsList.innerHTML=`<div style="text-align:center;padding:30px;color:#888"><div class="spinner"></div>Loading comments…</div>`;
-    drawer.classList.add("open");backdrop.classList.add("open");
+    profileDrawer.classList.remove("open");
+    drawer.classList.add("open");
+    backdrop.classList.add("open");
     try{
-      const data=await api("/comment/list",{url:id,count:30,cursor:0}),cs=data?.comments||[];
-      commentsList.innerHTML=cs.length?cs.map(c=>{const u=c.user||{};const av=u.avatar?`<img src="${esc(u.avatar)}" alt="">`:`<div class="cavi">${esc((u.unique_id||"BS").slice(0,2).toUpperCase())}</div>`;return`<div class="comment">${av}<div class="ctext"><b>@${esc(u.unique_id||u.nickname||"user")}</b>${esc(c.text||"")}<small>♥ ${fmt(c.digg_count)} · ${fmt(c.reply_total)} replies</small></div></div>`}).join(""):`<div style="padding:30px;text-align:center;color:#888">No public comments returned.</div>`;
-    }catch(e){commentsList.innerHTML=`<div style="padding:30px;text-align:center;color:#888">Couldn’t load comments.</div>`}
+      const data=await api("/comment/list",{url:id,count:30,cursor:0});
+      const cs=data?.comments||[];
+      commentsList.innerHTML=cs.length?cs.map(c=>{
+        const u=c.user||{};
+        const username=u.unique_id||u.uniqueId||u.nickname||"user";
+        let avatar=u.avatar||u.avatar_thumb||u.avatarThumb||"";
+        try{if(avatar)avatar=new URL(avatar,SERVICE_ORIGIN).href}catch{}
+        const av=avatar
+          ?`<img src="${esc(avatar)}" alt="">`
+          :`<div class="cavi">${esc(username.slice(0,2).toUpperCase())}</div>`;
+        return`<div class="comment">
+          <button class="comment-user" data-comment-profile="${esc(username)}">
+            ${av}
+            <div class="ctext">
+              <b>@${esc(username)}</b>
+              ${esc(c.text||"")}
+              <small>♥ ${fmt(c.digg_count)} · ${fmt(c.reply_total)} replies</small>
+            </div>
+          </button>
+        </div>`;
+      }).join(""):`<div style="padding:30px;text-align:center;color:#888">No public comments returned.</div>`;
+
+      commentsList.querySelectorAll("[data-comment-profile]").forEach(btn=>{
+        btn.addEventListener("click",()=>openProfile(btn.dataset.commentProfile,true));
+      });
+    }catch(e){
+      commentsList.innerHTML=`<div style="padding:30px;text-align:center;color:#888">Couldn’t load comments.</div>`;
+    }
   }
 
-  function closeComments(){drawer.classList.remove("open");backdrop.classList.remove("open")}
+  function closeComments(){
+    drawer.classList.remove("open");
+    if(!profileDrawer.classList.contains("open"))backdrop.classList.remove("open");
+  }
+
+  function profileAvatarURL(user){
+    const raw=user?.avatarLarger||user?.avatarMedium||user?.avatarThumb||user?.avatar||"";
+    if(!raw)return "";
+    try{return new URL(raw,SERVICE_ORIGIN).href}catch{return raw}
+  }
+
+  function closeProfile(){
+    profileDrawer.classList.remove("open");
+    if(profileReturnToComments){
+      drawer.classList.add("open");
+      backdrop.classList.add("open");
+      profileReturnToComments=false;
+    }else if(!drawer.classList.contains("open")){
+      backdrop.classList.remove("open");
+    }
+  }
+
+  async function openProfile(username,fromComments=false){
+    username=String(username||"").replace(/^@/,"").trim();
+    if(!username)return;
+
+    currentProfileUsername=username;
+    profileReturnToComments=!!fromComments;
+
+    if(fromComments)drawer.classList.remove("open");
+    else drawer.classList.remove("open");
+
+    profileTitle.textContent="@"+username;
+    profileContent.innerHTML=`<div class="profile-loading"><div class="spinner"></div>Loading profile…</div>`;
+    profileDrawer.classList.add("open");
+    backdrop.classList.add("open");
+
+    const [detailResult,postsResult]=await Promise.allSettled([
+      api("/user/info",{unique_id:username}),
+      api("/user/posts",{unique_id:username,count:30,cursor:"0"})
+    ]);
+
+    if(currentProfileUsername!==username)return;
+
+    const detail=detailResult.status==="fulfilled"?(detailResult.value||{}):{};
+    const postData=postsResult.status==="fulfilled"?(postsResult.value||{}):{};
+    const user=detail.user||{};
+    const stats=detail.stats||{};
+    const rawPosts=Array.isArray(postData)?postData:(postData.videos||[]);
+    const posts=rawPosts.map(normalize).filter(p=>p.id&&(p.cover||p.play));
+
+    const handle=user.uniqueId||user.unique_id||username;
+    const nickname=user.nickname||handle;
+    const avatar=profileAvatarURL(user)||posts.find(p=>p.avatar)?.avatar||"";
+    const bio=user.signature||"";
+    const verified=!!user.verified;
+
+    const avatarHTML=avatar
+      ?`<img class="profile-big-avatar" src="${esc(avatar)}" alt="">`
+      :`<div class="profile-big-fallback">${esc(handle.slice(0,2).toUpperCase())}</div>`;
+
+    const grid=posts.length?posts.map((p,i)=>`
+      <button class="profile-post" data-profile-post="${esc(p.id)}" title="${esc(p.title)}">
+        <img src="${esc(p.cover)}" alt="" loading="lazy">
+        <span class="profile-post-shade">▶ ${fmt(p.playCount)}</span>
+      </button>
+    `).join(""):`<div class="profile-empty" style="grid-column:1/-1">No recent public posts were returned.</div>`;
+
+    profileContent.innerHTML=`
+      <div class="profile-hero">
+        <div class="profile-identity">
+          ${avatarHTML}
+          <div class="profile-names">
+            <h2>${esc(nickname)}${verified?'<span class="verified">✓</span>':""}</h2>
+            <div class="handle">@${esc(handle)}</div>
+          </div>
+        </div>
+        <div class="profile-stats">
+          <div class="profile-stat"><b>${fmt(stats.followerCount)}</b><span>Followers</span></div>
+          <div class="profile-stat"><b>${fmt(stats.followingCount)}</b><span>Following</span></div>
+          <div class="profile-stat"><b>${fmt(stats.heartCount||stats.heart)}</b><span>Likes</span></div>
+        </div>
+        ${bio?`<div class="profile-bio">${esc(bio)}</div>`:""}
+      </div>
+      <div class="profile-posts-head"><span>Posts</span><span>${fmt(stats.videoCount||posts.length)}</span></div>
+      <div class="profile-grid">${grid}</div>
+    `;
+
+    profileContent.querySelectorAll("[data-profile-post]").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const post=posts.find(p=>p.id===btn.dataset.profilePost);
+        if(!post)return;
+
+        let index=videos.findIndex(v=>v.id===post.id);
+        if(index<0){
+          ids.add(post.id);
+          videos.push(post);
+          appendNewCards();
+          index=videos.length-1;
+        }
+
+        profileReturnToComments=false;
+        closeProfile();
+        const target=feed.querySelector(`.reel[data-index="${index}"]`);
+        target?.scrollIntoView({behavior:"smooth"});
+        setTimeout(()=>activate(index,true),250);
+      });
+    });
+
+    if(detailResult.status==="rejected"&&postsResult.status==="rejected"){
+      profileContent.innerHTML=`<div class="profile-empty"><b style="display:block;color:#fff;margin-bottom:7px">Profile unavailable</b>Couldn’t load this creator right now.</div>`;
+    }
+  }
+
   async function shareVideo(id){
     const v=videos.find(x=>x.id===id);if(!v)return;
     const url=`${SOURCE_ORIGIN}/@${v.username}/video/${v.id}`;
@@ -408,24 +538,31 @@ select{width:100%;background:#141414;color:#fff;border:1px solid #333;border-rad
   function shuffleFeed(){
     pauseAll();
     videos.sort(()=>Math.random()-.5);
-    renderedCount=0;generation++;feed.innerHTML="";
+    renderedCount=0;feed.innerHTML="";
     appendNewCards();feed.scrollTo({top:0});setTimeout(()=>activate(0,true),120)
   }
 
-  const ABOUT="blobe scroll is super tuff scrolling doomscroll platform and better than Instagram and TikTok rizz party.";
+  const ABOUT="Blobe Scroll is the best unblocked video site. It provides an accessible alternative to platforms like Instagram and TikTok. Created by Blobby Boi :)";
   document.getElementById("homeBtn").onclick=document.getElementById("mHome").onclick=()=>feed.scrollTo({top:0,behavior:"smooth"});
   document.getElementById("refreshBtn").onclick=document.getElementById("mRefresh").onclick=resetFeed;
   document.getElementById("soundBtn").onclick=document.getElementById("mSound").onclick=toggleSound;
   document.getElementById("aboutBtn").onclick=document.getElementById("mAbout").onclick=()=>toast(ABOUT);
   document.getElementById("applyRegion").onclick=()=>{toast("VPN connected: "+regionSelect.options[regionSelect.selectedIndex].text);resetFeed()};
   document.getElementById("shuffleBtn").onclick=shuffleFeed;
-  document.getElementById("closeComments").onclick=closeComments;backdrop.onclick=closeComments;
+  document.getElementById("closeComments").onclick=closeComments;
+  document.getElementById("closeProfile").onclick=closeProfile;
+  backdrop.onclick=()=>{
+    profileReturnToComments=false;
+    profileDrawer.classList.remove("open");
+    drawer.classList.remove("open");
+    backdrop.classList.remove("open");
+  };
 
   window.addEventListener("keydown",e=>{
-    if(drawer.classList.contains("open"))return;
+    if(drawer.classList.contains("open")||profileDrawer.classList.contains("open"))return;
     if(["ArrowDown","PageDown","ArrowUp","PageUp"].includes(e.key)){
       e.preventDefault();
-      const cards=[...feed.querySelectorAll(".reel,.ad-reel")];if(!cards.length)return;
+      const cards=[...feed.querySelectorAll(".reel")];if(!cards.length)return;
       let current=activeFeedElement&&cards.includes(activeFeedElement)?cards.indexOf(activeFeedElement):0;
       const delta=(e.key==="ArrowDown"||e.key==="PageDown")?1:-1;
       cards[Math.max(0,Math.min(cards.length-1,current+delta))]?.scrollIntoView({behavior:"smooth"})
